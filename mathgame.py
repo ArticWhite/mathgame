@@ -2,7 +2,13 @@ import tkinter as tk
 import random
 val1 = random.randint(1,600)
 val2 = random.randint(1,600)
-question = str(val1)+" + "+str(val2)
+typeQuestion = random.randint(1,3)
+if (typeQuestion==1):
+    question = str(val1)+" + "+str(val2)
+elif (typeQuestion == 2):
+    question = str(val1)+" - "+str(val2)
+else:
+    question = str(val1)+" x "+str(val2)
 score = 0
 
 #function for guessing number
@@ -10,16 +16,28 @@ def submitGuess():
     global val1
     global val2
     global score
-    actual = val1+val2
-    #print(str(entry.get())==str(actual))
+    global typeQuestion
+    if(typeQuestion==1):
+        actual = val1+val2
+    elif(typeQuestion==2):
+        actual = val1-val2
+    else:
+        actual = val1*val2
     if (str(actual) == str(entry.get())):
         score+=1
         label_score.config(text= "score: "+str(score))
     val1 = random.randint(1,600)
     val2 = random.randint(1,600)
+    typeQuestion = random.randint(1,3)
     question = str(val1)+" + "+str(val2)
+    if (typeQuestion==1):
+        question = str(val1)+" + "+str(val2)
+    elif (typeQuestion == 2):
+        question = str(val1)+" - "+str(val2)
+    else:
+        question = str(val1)+" x "+str(val2)
     label_q.config(text= question)
-    print(score)
+    entry.config(text="")
 
 window = tk.Tk()
 
